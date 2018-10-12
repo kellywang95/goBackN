@@ -30,13 +30,13 @@ extern int errno;
 #define MAX_ATTEMPT  5    /* max number of retries before timeout       */
 
 /*----- Packet types -----*/
-#define SYN      0        /* Opens a connection                          */
-#define SYNACK   1        /* Acknowledgement of the SYN packet           */
-#define DATA     2        /* Data packets                                */
-#define DATAACK  3       /* Acknowledgement of the DATA packet          */
-#define FIN      4        /* Ends a connection                           */
-#define FINACK   5        /* Acknowledgement of the FIN packet           */
-#define RST      6        /* Reset packet used to reject new connections */
+#define SYN      10        /* Opens a connection                          */
+#define SYNACK   11        /* Acknowledgement of the SYN packet           */
+#define DATA     12        /* Data packets                                */
+#define DATAACK  13       /* Acknowledgement of the DATA packet          */
+#define FIN      14        /* Ends a connection                           */
+#define FINACK   15        /* Acknowledgement of the FIN packet           */
+#define RST      16        /* Reset packet used to reject new connections */
 
 /*----- Go-Back-n packet format -----*/
 typedef struct {
@@ -49,7 +49,7 @@ typedef struct {
 
 typedef struct state_t{
 	int mode, state, timed_out;
-	struct sockaddr senderServerAddr, receiverServerAddr;
+	struct sockaddr* senderServerAddr, *receiverServerAddr;
 	socklen_t senderSocklen, receiverSocklen;
 	uint8_t send_seqnum, rec_seqnum;
 } state_t;
